@@ -1,12 +1,28 @@
-Para poder compilar el código fuente, descarga o guarda el fichero .bas que te interese compilar, luego ves a esta web:
+Para poder compilar el código fuente, descarga o guarda el fichero .bas que te interese compilar,
+luego ves a esta web:
 
 https://sites.google.com/site/proyectosroboticos/Descargar-Simuladores
 
-Allí encontrarás dos simuladores de brazo robot, descárgate el que te interese y se corresponda con el fichero fuente (BrazoRobot o DiezCuebos). Lo hará en formato comprimido .zip. Extraes la carpeta que hay en su interior y la colocas en el escritorio (por ejemplo). Tomas el archivo .bas y lo metes dentro de la carpeta. Ahora podrás compilarlo.
+Allí encontrarás dos simuladores de brazo robot, descárgate el que te interese y se corresponda
+con el fichero fuente (BrazoRobot o DiezCuebos). Lo hará en formato comprimido .zip. Extraes la
+carpeta que hay en su interior y la colocas en el escritorio (por ejemplo). Tomas el archivo .bas
+y lo metes dentro de la carpeta. En dicha carpeta se encuentra los archivos .bi y librerías que 
+necesita para poder compilar.
 
-  Si te da un error de compilación has de eliminar el fichero "windows.bi" de dicha carpeta; ese fichero lo tengo puesto para poder ser compatible con versiones antiguas del compilador de FreeBasic.
+Con "Emulador RV-2AJ compatible COSIMIR" es el mismo proceso.
 
+Si al compilar te da un "error 58" has de eliminar el fichero "windows.bi" de dicha carpeta; ese
+fichero lo tengo puesto para poder ser compatible con versiones antiguas del compilador de FreeBasic.
 
+Según la versión del compilador de Freebasic, en las funciones "MultiKey()" puede dar problemas. Si
+te da fallo en esa función tendrías que cambiar todos los "FB.SC_" por "SC_", o al revés (según el caso),
+y asunto resuelto.
 
+Ejemplo:
+If MultiKey(FB.SC_A) Then Xreal=Xreal-1
 
+por
 
+If MultiKey(SC_A) Then Xreal=Xreal-1
+
+Así con todas las funciones "MultiKey()".
