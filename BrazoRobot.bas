@@ -10,6 +10,7 @@ WindowTitle "Brazo Robot XYZ"
 #Include Once "createtex.bi"
 #Include Once "windows.bi"
 
+
 Declare Sub InverseK
 Declare Sub DibujaBrazo
 Declare Sub Bresenham
@@ -66,11 +67,11 @@ Dim Shared As String   Fichero, OldFile, NomFich, Guiones, Tecla
 Dim Shared As UInteger Modificado, Reg, Freg, Aux, Cont, Paso, Memo, F1, FN
 
 Dim Shared As UInteger gbase
-Dim Shared As UInteger textura1, textura2
+Dim Shared As UInteger texture
 
 Dim Shared As Integer Count, Flag, Neg
 
-Dim Shared As Single  Array(1 To 1, 1 To 1)
+ReDim Shared As Single  Array(1 To 1, 1 To 1)
 
 Dim Shared As Single LightPos(0 To 3) => {0.0, 5.0, -5.0, 1.0}     '' Light Position
 Dim Shared As Single LightAmb(0 To 3) => {1.0, 1.0, 1.0, 1.0}      '' Ambient Light Values
@@ -78,6 +79,8 @@ Dim Shared As Single LightDif(0 To 3) => {1.0, 1.0, 1.0, 1.0}      '' Diffuse Li
 Dim Shared As Single LightSpc(0 To 3) => {-1.0, -1.0, -1.0, 1.0}   '' Specular Light Values
 
 Dim Shared Quadratic As GLUquadricObj Ptr
+
+Dim Textura As UInteger
 
 '------------Carga de Variables--------------------
 
@@ -137,15 +140,15 @@ Open "Buffer.mem" For Random As (2) Len=Len(Grado)
 
 Screen 19, 1,, 2  
 '----------------------------------
-Dim buffer1(256*256*4+4) As UByte       
-BLoad "Font.bmp", @buffer1(0)            
-textura1 = CreateTexture(@buffer1(0))
+ReDim buffer(256*256*4+4) As UByte       
+BLoad "Font.bmp", @buffer(0)            
+texture = CreateTexture(@buffer(0))
 BuildFont 
 '----------------------------------
 
-Dim buffer2(256*256*4+4) As UByte     '' Size = Width x Height x 4 bytes per pixel + 4 bytes for header
-BLoad "skin.bmp", @buffer2(0)                  '' BLOAD the bitmap
-textura2 = CreateTexture( @buffer2(0) )
+ReDim buffer(256*256*4+4) As UByte     '' Size = Width x Height x 4 bytes per pixel + 4 bytes for header
+BLoad "skin.bmp", @buffer(0)                  '' BLOAD the bitmap
+Textura = CreateTexture( @buffer(0) )
 
 glViewport 0, 0, 800, 600
 glMatrixMode GL_PROJECTION
@@ -739,10 +742,10 @@ Sub DibujaBrazo
    
    If Ventana=0 Then 
    	glColor3f 1, 1, 1
-      glPrint 486, 420, "Ang. Giro Br.: " + Left  (Str( CInt(AngGiro*10)/10      ), 6), 0
-      glPrint 486, 410, "Ang. Brazo   : " + Left  (Str( CInt(-AngBrazo*10+90)/10 ), 6), 0
-      glPrint 486, 400, "Ang. Ant.Br. : " + Left  (Str( CInt(-AngAntBr*10)/10    ), 6), 0
-      glPrint 486, 390, "Ang. Muneca  : " + Left  (Str( CInt(-AngMunecA*10)/10   ), 6), 0
+      glPrint 486, 420, "Ang. Giro Br.: " + Left  (Str(  AngGiro),     8), 0
+      glPrint 486, 410, "Ang. Brazo   : " + Left  (Str( -AngBrazo+90), 8), 0
+      glPrint 486, 400, "Ang. Ant.Br. : " + Left  (Str( -AngAntBr),    8), 0
+      glPrint 486, 390, "Ang. Muneca  : " + Left  (Str( -AngMunecA),   8), 0
       
    EndIf 
 
@@ -966,10 +969,10 @@ Sub Scroll
    For Cont2=-2 To 2
    	
    	If Cont2=0 Then 
-   	   glColor3f 1,1,1 
+   	   glColor3f 1,1,1
    	   glPrint 255 ,420, "<---Reg:" + Str(Reg),0
    	Else
-   	   If reg=1 And Cont2=-2 Then glColor3f 0,0,0 Else glColor3f 0,0,1
+   	   glColor3f 0,0,1
    	EndIf    
    	   
    	If (Cont2+Reg)>0 Then
@@ -992,7 +995,7 @@ End Sub
 Sub InverseK
    
    Dim    As Double   Afx, Afy, LadoA, LadoB, Alfa, Beta, Gamma, Modulo, Hipotenusa, Xprima, Yprima
-   Static As Integer  Xaux, Yaux, Zaux, Vaux, VEje
+   Static As Integer  Xaux, Yaux, Zaux, Vaux, Veje
    Static As Integer  x, y, z, v
    
 '     ------- Cinemática Inversa ----------
@@ -1004,7 +1007,7 @@ Sub InverseK
    Yprima=EjeZ
    
 '   En esta subrutina, sustituimos EjeV por Veje (sólo afecta aquí), para hacer una modificación de grados. 
-   VEje=EjeV '-EjeV+90 ' Compativilidad de ángulos con COSIMIR.
+   Veje=EjeV '-EjeV+90 ' Compativilidad de ángulos con COSIMIR.
    
    Afx=Cos(Rad*VEje)*Terminal
    LadoB=Xprima-Afx
@@ -1021,7 +1024,7 @@ Sub InverseK
    AngBrazo= (Alfa+Beta)*Grad          ' Ang. BRAZO     (en Grados).
    
    Gamma=Acos(((LongBrazo^2)+(LongAntBr^2)-(Hipotenusa^2))/((2*LongBrazo)*LongAntBr))
-   AngAntBr=-(180*Rad-Gamma)*Grad  ' Ang. ANTEBRAZO (en Grados).
+   AngAntBr=(-((180*Rad)-Gamma))*Grad  ' Ang. ANTEBRAZO (en Grados).
    AngMunecA= (Veje-AngBrazo-AngAntBr) ' Ang. Cabeceo   (en Grados).
    
    If (Str(AngBrazo)="-1.#IND") Or (Str(AngAntBr)= "-1.#IND") Or  (Str(AngMunecA)= "-1.#IND") Then 
@@ -1041,6 +1044,12 @@ Sub InverseK
    Vaux=EjeV
    	
    DibujaBrazo
+  
+'   If FN=5 Or FN=6 Then
+'	   Pausa=Timer+.004     ' Temporizador para ordenadores rápidos.
+'	   While Pausa>Timer
+'	   Wend
+'   EndIf
    	   
 End Sub
 
@@ -1051,7 +1060,7 @@ Sub BuildFont
    Static cy    As Single                 
 
    gbase = glGenLists(256)                
-   glBindTexture GL_TEXTURE_2D, textura1    
+   glBindTexture GL_TEXTURE_2D, texture     
    For gloop = 0 To 255             
 
    	cx = (gloop Mod 16)/16         
@@ -1077,7 +1086,7 @@ Sub glPrint(ByVal x As Integer, ByVal y As Integer, ByVal glstring As String, By
 
    If gset>1 Then gset=1
 
-   glBindTexture GL_TEXTURE_2D, textura1             
+   glBindTexture GL_TEXTURE_2D, texture             
    glDisable GL_DEPTH_TEST                                
    glMatrixMode GL_PROJECTION                              
    glPushMatrix                                          
@@ -1121,7 +1130,7 @@ Sub PLT2XYZ
          Get #1,, Char
              
          If Char="R" Then
-         	MessageBox( NULL, "El archivo: " + UCase(Fichero) + Chr(13)+ "Es incompatible con este fichero porque contiene posiciones relativas.", "Brazo Robot.", MB_ICONEXCLAMATION)
+         	MessageBox( NULL, "El archivo: " + UCase(Fichero) + Chr(13)+ "Es incompatible con este programa porque contiene posiciones relativas.", "Brazo Robot.", MB_ICONEXCLAMATION)
                 
          	Close(2)   
             Kill "Buffer.mem"
@@ -1200,7 +1209,7 @@ Sub PLT2XYZ
       	
       EndIf
 
-      If (Xr<>xx) Or (Yr<>yy) Then  ' Xr Yr evitan redundancia.
+      If (Xr<>xx) Or (Yr<>yy) Then  ' Xr Yr evitan redundancia.                                                 ' Bandera evita la posición cero.
          Eje.StrX=Space(Letras)
 			Eje.StrY=Space(Letras)
 			Eje.StrZ=Space(Letras)
