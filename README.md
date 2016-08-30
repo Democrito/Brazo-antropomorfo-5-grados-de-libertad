@@ -4,4 +4,5 @@
 
 "Emulador RV-2AJ compatible COSIMIR.bas" es el código fuente de un simulador parecido a los anteriores, en el que además te permite leer ficheros de extensión ".POS" del Cosimir. Más información: https://sites.google.com/site/proyectosroboticos/Descargar-Simuladores/simulador-rv-2aj
 
-Los tres ficheros con extensión .bas son los códigos fuentes, el resto de ficheros no son necesarios. Todo lo que puedas necesitar para compilar lo encontrarás en los enlaces (URL) que pongo en los párrafos anteriores.
+Los tres ficheros con extensión .bas son los códigos fuentes, el resto de ficheros no son necesarios.
+El archivo llamado "LeeMe.txt" encontrarás la información para compilar los tres simuladores de brazo robot. 
