@@ -1,1 +1,12 @@
-Más información: https://sites.google.com/site/proyectosroboticos/Descargar-Simuladores
+Para poder compilar el código fuente, descarga o guarda el fichero .bas que te interese compilar, luego ves a esta web:
+
+https://sites.google.com/site/proyectosroboticos/Descargar-Simuladores
+
+Allí encontrarás dos simuladores de brazo robot, descárgate el que te interese y se corresponda con el fichero fuente (BrazoRobot o DiezCuebos). Lo hará en formato comprimido .zip. Extraes la carpeta que hay en su interior y la colocas en el escritorio (por ejemplo). Tomas el archivo .bas y lo metes dentro de la carpeta. Ahora podrás compilarlo.
+
+  Si te da un error de compilación has de eliminar el fichero "windows.bi" de dicha carpeta; ese fichero lo tengo puesto para poder ser compatible con versiones antiguas del compilador de FreeBasic.
+
+
+
+
+
