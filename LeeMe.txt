@@ -11,10 +11,10 @@ necesita para poder compilar.
 
 Con "Emulador RV-2AJ compatible COSIMIR" es el mismo proceso.
 
-Si al compilar te da un "error 58" has de eliminar el fichero "windows.bi" de dicha carpeta; ese
+Si al compilar te da   "error 58"   has de eliminar el fichero  "windows.bi"  de dicha carpeta;  ese
 fichero lo tengo puesto para poder ser compatible con versiones antiguas del compilador de FreeBasic.
 
-Según la versión del compilador de Freebasic, en las funciones "MultiKey()" puede dar problemas. Si
+Según  la  versión  del  compilador,  en  las funciones    "MultiKey()"    puede dar problemas.   Si
 te da fallo en esa función tendrías que cambiar todos los "FB.SC_" por "SC_", o al revés (según el caso),
 y asunto resuelto.
 
