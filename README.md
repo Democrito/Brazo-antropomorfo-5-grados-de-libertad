@@ -4,11 +4,7 @@
 
 "Emulador RV-2AJ compatible COSIMIR.bas" es el código fuente de un simulador parecido a los anteriores, en el que además te permite leer ficheros de extensión ".POS" del Cosimir. Más información: https://sites.google.com/site/proyectosroboticos/Descargar-Simuladores/simulador-rv-2aj
 
-Descarga todo desde aquí mismo (lugar anterior en el que estabas), dándole a "Clone or download"
-(arriba a la derecha, botón de color verde). Le das a la opción descargar ZIP y se descargará.
-Abres el zip y tomas la carpeta que está en su interior y la pones en el escritorio o donde te sea
-más cómodo. Abres la carpeta y allí tienes tres códigos fuentes con extensión .bas. Tomas el que te
-interese y si tienes instalado el compilador lo podrás compilar y ejecutar.
+@.) Descarga todo dándole a "Clone or download" (arriba a la derecha, botón de color verde). Le das a la opción descargar ZIP y se descargará. Abres el zip y tomas la carpeta que está en su interior y la pones en el escritorio o donde te sea más cómodo. Abres la carpeta y allí tienes tres códigos fuentes con extensión .bas. Tomas el que te interese y si tienes instalado el compilador lo podrás compilar y ejecutar.
 
 @.) Si al compilar te da   "error 58"   has de eliminar el fichero  "windows.bi"  de dicha carpeta;  ese
 fichero lo tengo puesto para poder ser compatible con versiones antiguas del compilador de FreeBasic.
