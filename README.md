@@ -16,12 +16,15 @@ y asunto resuelto.
 Ejemplo:
 
 If MultiKey(FB.SC_A) Then Xreal=Xreal-1
+
 por
+
 If MultiKey(SC_A) Then Xreal=Xreal-1
 
 Así con todas las funciones "MultiKey()".
 
 @.) Los ficheros .plt son ejemplos para que el brazo robot dibuje su contenido.
+
 @.) Los ficheros .xyz son ejemplos de movimientos preprogramados; sólo son compatibles con "BrazoRobot.bas",
 los otros dos simuladores no sabrán leerlos; si este es tu caso bórralos.
 
