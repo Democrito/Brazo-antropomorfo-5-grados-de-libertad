@@ -900,7 +900,7 @@ End Sub
 
 Sub Scroll
 
-	Dim As Integer       Cont2
+	Dim As Integer       Cont2, suma
 	Dim As String*Letras Cadena
 		
 	glColor3f 0,1,0
@@ -933,8 +933,8 @@ Sub Scroll
 	glPrint 315 ,420, "<---Reg:" + Str(Reg),0
 	
 	For Cont2=-2 To 2
-			
-		If (Cont2+Reg)>0 Then
+		suma=Cont2+Reg
+		If suma>0 Then
 			
 			If Cont2=0 Then
 				glColor3f 1,1,1
@@ -942,7 +942,7 @@ Sub Scroll
 				glColor3f 0,0,1
 			EndIf
 			
-			Get #2, (Cont2+Reg), Eje
+			Get #2, suma, Eje
 				
 			If ( Eje.StrX<>Space(Letras) ) And ( Eje.StrX<>"" )  Then
 				glPrint 1,420-(12*Cont2),Eje.StrX+" "+Eje.StrY+" "+Eje.StrZ+" "+Eje.StrV+" "+Eje.StrW+" "+Eje.StrD+" "+Eje.StrP+" "+Eje.StrO,0

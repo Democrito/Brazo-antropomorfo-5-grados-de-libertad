@@ -899,9 +899,9 @@ End Sub
 
 Sub Scroll
 
-   Dim As Integer       Cont2,  Vnum
-   Dim As String*Letras Cadena, Vtext
-      
+   Dim As Integer       Cont2,  suma
+   Dim As String*Letras Cadena
+   
    glColor3f 0.0,1.0,0.0 
       
    If (Fichero<>"") Then glPrint 370 ,460, "Nombre : "+Fichero, 0
@@ -929,10 +929,10 @@ Sub Scroll
       Else
          glColor3f 0,0,1
       EndIf    
-         
-      If (Cont2+Reg)>0 Then
+      suma=Cont2+Reg   
+      If suma>0 Then
             
-         Get #2, (Reg+Cont2), Eje
+         Get #2, suma, Eje
             
          If ( ( Eje.StrX<>Space(Letras) ) And ( Eje.StrX<>"" ) ) Then
             glPrint 1,420-(12*Cont2),Eje.StrX+" "+Eje.StrY+" "+Eje.StrZ+" "+Eje.StrV+" "+Eje.StrW+" "+Eje.StrD,0

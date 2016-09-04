@@ -944,8 +944,8 @@ End Sub
 
 Sub Scroll
 
-   Dim As Integer       Cont2,  Vnum
-   Dim As String*Letras Cadena, Vtext
+   Dim As Integer       cont2, suma
+   Dim As String*Letras Cadena
    	
    glColor3f 0.0,1.0,0.0 
    	
@@ -966,7 +966,7 @@ Sub Scroll
    RSet Cadena, Str(EjeD)
    glPrint 1+((Letras*30)+30), 460, Cadena+"P",     0
    	
-   For Cont2=-2 To 2
+   For cont2=-2 To 2
    	
    	If Cont2=0 Then 
    	   glColor3f 1,1,1
@@ -974,15 +974,15 @@ Sub Scroll
    	Else
    	   glColor3f 0,0,1
    	EndIf    
-   	   
-   	If (Cont2+Reg)>0 Then
+   	suma=Reg+cont2   
+   	If (suma>0) Then
    	      
-   	   Get #2, (Reg+Cont2), Eje
+   	   Get #2, suma, Eje
    	   	
    	   If ( ( Eje.StrX<>Space(Letras) ) And ( Eje.StrX<>"" ) ) Then
-   	   	glPrint 1,420-(12*Cont2),Eje.StrX+" "+Eje.StrY+" "+Eje.StrZ+" "+Eje.StrV+" "+Eje.StrW+" "+Eje.StrD,0
+   	   	glPrint 1,420-(12*cont2),Eje.StrX+" "+Eje.StrY+" "+Eje.StrZ+" "+Eje.StrV+" "+Eje.StrW+" "+Eje.StrD,0
    	   Else
-   	   	glPrint 1,420-(12*Cont2), Guiones, 0
+   	   	glPrint 1,420-(12*cont2), Guiones, 0
    	   EndIf
    	   
    	EndIf   	
