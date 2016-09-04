@@ -209,7 +209,7 @@ IniCubo
 
 While (1)
 	
-      Tecla=InKey
+      Tecla=Inkey
       Teclas   
       
 Wend
@@ -655,7 +655,7 @@ Sub Teclas
 	      Freg=Reg
 			For Cont=Freg To Aux
 				
-	         Tecla=InKey 
+	         Tecla=Inkey 
 				If Tecla=Chr(27) Then
 					Tecla=""
 				   Exit For
@@ -900,8 +900,8 @@ End Sub
 
 Sub Scroll
 
-	Dim As Integer       Cont2,  Vnum
-	Dim As String*Letras Cadena, Vtext
+	Dim As Integer       Cont2
+	Dim As String*Letras Cadena
 		
 	glColor3f 0,1,0
 		
@@ -930,20 +930,21 @@ Sub Scroll
 	RSet Cadena, Str(NumCubo)
 	glPrint 273,                460, Cadena+"Cubo",     0
 		
+	glPrint 315 ,420, "<---Reg:" + Str(Reg),0
+	
 	For Cont2=-2 To 2
-		
-		If Cont2=0 Then 
-			glColor3f 1,1,1
-			glPrint 315 ,420, "<---Reg:" + Str(Reg),0
-		Else
-			glColor3f 0,0,1
-		EndIf    
 			
 		If (Cont2+Reg)>0 Then
-			   
-			Get #2, (Reg+Cont2), Eje
+			
+			If Cont2=0 Then
+				glColor3f 1,1,1
+			Else
+				glColor3f 0,0,1
+			EndIf
+			
+			Get #2, (Cont2+Reg), Eje
 				
-			If ( ( Eje.StrX<>Space(Letras) ) And ( Eje.StrX<>"" ) ) Then
+			If ( Eje.StrX<>Space(Letras) ) And ( Eje.StrX<>"" )  Then
 				glPrint 1,420-(12*Cont2),Eje.StrX+" "+Eje.StrY+" "+Eje.StrZ+" "+Eje.StrV+" "+Eje.StrW+" "+Eje.StrD+" "+Eje.StrP+" "+Eje.StrO,0
 			Else
 				glPrint 1,420-(12*Cont2), Guiones, 0
@@ -966,7 +967,7 @@ Sub InverseK
 	
 	
 	Modulo  = Sqr(Abs(EjeX^2)+Abs(EjeY^2))
-	AngGiro =  (Atan2(EjeY, EjeX))*Grad
+	AngGiro =  (ATan2(EjeY, EjeX))*Grad
 	
 	Xprima=modulo
 	Yprima=EjeZ
@@ -979,13 +980,13 @@ Sub InverseK
 	 
 	Hipotenusa=Sqr((LadoA^2)+(LadoB^2))
 	
-	Alfa=Atan2(LadoA,LadoB)
+	Alfa=ATan2(LadoA,LadoB)
 	
-	Beta=Acos(((LongBrazo^2)-(LongAntBr^2)+(Hipotenusa^2))/(2*LongBrazo*Hipotenusa))
+	Beta=ACos(((LongBrazo^2)-(LongAntBr^2)+(Hipotenusa^2))/(2*LongBrazo*Hipotenusa))
 	
 	AngBrazo= (Alfa+Beta)*Grad          ' Ang. BRAZO     (en Grados).
 	
-	Gamma=Acos(((LongBrazo^2)+(LongAntBr^2)-(Hipotenusa^2))/(2*LongBrazo*LongAntBr))
+	Gamma=ACos(((LongBrazo^2)+(LongAntBr^2)-(Hipotenusa^2))/(2*LongBrazo*LongAntBr))
 	AngAntBr=(-((180*Rad)-Gamma))*Grad  ' Ang. ANTEBRAZO (en Grados).
 	AngMunecA= (EjeV-AngBrazo-AngAntBr) ' Ang. BALANCEO  (en Grados).
 	
@@ -1008,7 +1009,7 @@ Sub InverseK
    DibujaBrazo
    
    If FN=5 Or FN=6 Then
-	   Sleep 5
+	   'Sleep 1
    EndIf
 		   
 End Sub
@@ -1253,7 +1254,7 @@ Sub FactorXY
 	
 	Open Fichero For Binary Access Read As (1)
 	
-	While Not EOF(1)
+	While Not Eof(1)
 	
 		Get #1,, Char
 		
@@ -1922,14 +1923,14 @@ End Sub
 
 Sub CuboSuelo
 	
-	Dim As UInteger Cont
+	Dim As Integer Cont2
 		'-------- Objeto en el Plano ---------
 	
 	If UCase(Right(Fichero,3))<>"PLT" Then
 		
-		For Cont=1 To 10
+		For Cont2=1 To 10
 		
-			If Cont<>NumCubo Then 
+			If Cont2<>NumCubo Then 
 			
 				glLoadIdentity
 				glTranslatef       0.0, 0.0, EscenaZ
@@ -1937,10 +1938,10 @@ Sub CuboSuelo
 				glRotatef EscenaX, 0.0, 1.0, 0.0
 				glRotatef EscenaY, 1.0, 0.0, 0.0
 		
-				glTranslatef    Xobj(Cont), -1.8, Yobj(Cont)
+				glTranslatef    Xobj(Cont2), -1.8, Yobj(Cont2)
 				
 				glRotatef        -90,       0,0,1
-		      glRotatef       -Aobj(Cont)+Wobj(Cont), 1,0,0
+		      glRotatef       -Aobj(Cont2)+Wobj(Cont2), 1,0,0
 		      
 				glBegin(GL_QUADS)
 				
@@ -1994,10 +1995,10 @@ Sub CuboSuelo
 				glRotatef EscenaX, 0.0, 1.0, 0.0
 				glRotatef EscenaY, 1.0, 0.0, 0.0
 		
-				glTranslatef    Xobj(Cont), -1.8, Yobj(Cont)
+				glTranslatef    Xobj(Cont2), -1.8, Yobj(Cont2)
 				
 				glRotatef        -90,       0,0,1
-		      glRotatef       -Aobj(Cont)+Wobj(Cont), 1,0,0
+		      glRotatef       -Aobj(Cont2)+Wobj(Cont2), 1,0,0
 				glColor3f    .4,.4,.4
 				glutWireCube (.4)
 				
@@ -2349,7 +2350,7 @@ End Sub
 
 Sub IniCubo
 	
-	Dim As UInteger Aux
+	Dim As Integer Aux
 	
 	Anterior=0
    Objeto=0
@@ -2369,7 +2370,7 @@ Sub IniCubo
 		Zobj(Aux)=    0
 		
 		Wobj(Aux)=  180
-		Aobj(Aux)= -180
+		Aobj(Aux)=  180
 
 	Next
 	
@@ -2388,19 +2389,19 @@ End Sub
 
 Sub GetObj
 	
-	Dim As UInteger Objeto
+	Dim As Integer Obj
 	   
 	   Get #2, Reg, Eje
 	   
-	   If Tecla="" Then Objeto=Val(Eje.StrO) Else Objeto=Val(tecla)
+	   If Tecla="" Then Obj=Val(Eje.StrO) Else Obj=Val(tecla)
 	   
 	   NumCubo=0
 		
-		EjeX= Xobj(Objeto)*100
-		EjeY=-Yobj(Objeto)*100
+		EjeX= Xobj(Obj)*100
+		EjeY=-Yobj(Obj)*100
 		EjeZ= 42
 		EjeV=-90
-	   EjeW= Wobj(Objeto)
+	   EjeW= Wobj(Obj)
 		EjeD= 25
 		
 		EjeXget=EjeX
@@ -2415,7 +2416,7 @@ Sub GetObj
 		Bresenham
 		
 		EjeD= 19
-		NumCubo=Objeto
+		NumCubo=Obj
 		Bresenham
 	
 		EjeZ= 42
