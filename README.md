@@ -1,4 +1,5 @@
 # Anthropomorphic programmable robot arm 5 degrees of freedom (FreeBASIC + OpenGL)
+[![License](http://img.shields.io/:license-gpl-blue.svg)](http://opensource.org/licenses/GPL-3.0)
 
 "BrazoRobot.bas" and DiezCubos.bas "are the codes sources FreeBasic programming language of the two simulators robot arm that is on this website: https://sites.google.com/site/proyectosroboticos/Descargar-Simuladores
 
