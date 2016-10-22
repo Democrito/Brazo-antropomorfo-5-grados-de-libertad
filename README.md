@@ -1,9 +1,14 @@
 # Anthropomorphic programmable robot arm 5 degrees of freedom (FreeBASIC + OpenGL)
 [![License](http://img.shields.io/:license-gpl-blue.svg)](http://opensource.org/licenses/GPL-3.0)
 
+![](https://github.com/FPGAwars/apio/raw/develop/docs/resources/images/windows.png)
+&nbsp;
+![](https://github.com/FPGAwars/apio/raw/develop/docs/resources/images/linux.png)
+FreeBasic source code compatible with Linux environments.
+
 ![](https://sites.google.com/site/proyectosroboticos/_/rsrc/1293750569649/Descargar-Simuladores/Brazo%20robot%2010%20cubos.PNG)
 
-"BrazoRobot.bas" and DiezCubos.bas "are the codes sources FreeBasic programming language of the two simulators robot arm that is on this website: https://sites.google.com/site/proyectosroboticos/Descargar-Simuladores
+"BrazoRobot.bas" and "DiezCubos.bas" are the codes sources FreeBasic programming language of the two simulators robot arm that is on this website: https://sites.google.com/site/proyectosroboticos/Descargar-Simuladores
 
 "RV-2AJ Emulator supports COSIMIR.bas" is the source code similar to the previous simulator, which also lets you read files ".POS" COSIMIR extension. More information: https://sites.google.com/site/proyectosroboticos/Descargar-Simuladores/simulador-rv-2aj
 
