@@ -13,7 +13,7 @@ FreeBasic source code compatible with Linux environments.
 "RV-2AJ Emulator supports COSIMIR.bas" is the source code similar to the previous simulator, which also lets you read files ".POS" COSIMIR extension. More information: https://sites.google.com/site/proyectosroboticos/Descargar-Simuladores/simulador-rv-2aj
 
 @.) Download all giving "Clone or download" (top right button green). You give the option to "Download ZIP" and downloaded. You open the zip and take the folder that is inside and put it on the desktop or wherever you more comfortable. You open the folder and there you have three codes sources .bas extension. Give that interests you and if you have installed the compiler you can compile and run.
-The editor and compiler can download it here (size less than 9MB, for Windows): http://fbide.freebasic.net/download (clic ---> FBIde + FreeBASIC installer)
+The editor and compiler can download it here (size less than 9MB, for Windows): http://fbide.freebasic.net/download (clic ---> "FBIde + FreeBASIC installer")
 
 @.) If the compile gives "Error 58" You have to remove the "windows.bi" file in that folder; I have put that file to be compatible with older versions of the compiler FreeBasic.
 
