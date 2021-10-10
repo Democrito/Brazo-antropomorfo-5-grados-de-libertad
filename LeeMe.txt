@@ -11,7 +11,8 @@ Abres el zip y tomas la carpeta que está en su interior y la pones en el escrit
 más cómodo. Abres la carpeta y allí tienes tres códigos fuentes con extensión .bas. Tomas el que te
 interese y si tienes instalado el compilador lo podrás compilar y ejecutar.
 
-Un brevísimo tutorial para compilar los archivos ".bas" y enlace para descargar el IDE lo tienes aquí: https://sites.google.com/site/proyectosroboticos/instalacion-fbide
+Un brevísimo tutorial para compilar los archivos ".bas" y enlace para descargar el IDE lo tienes aquí:
+https://sites.google.com/site/proyectosroboticos/instalacion-fbide
 
 @.) Si al compilar te da "error 58" (incluso 50 y algo) has de eliminar el fichero  "windows.bi"  de dicha carpeta;  ese
 fichero lo tengo puesto para poder ser compatible con versiones antiguas del compilador de FreeBasic.
